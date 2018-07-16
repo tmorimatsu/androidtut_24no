@@ -3,11 +3,14 @@ package com.example.mless.nishino;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FormValues implements Parcelable {
     private String surName, firstName;
     private String sex;
     private String phone;
-    private String[] hobby;
+    private List<String> hobby;
     private String work;
 
     FormValues() {
@@ -15,7 +18,7 @@ public class FormValues implements Parcelable {
         this.firstName = "";
         this.sex = "";
         this.phone = "";
-        this.hobby = new String[]{};
+        this.hobby = new ArrayList<>();
         this.work = "";
     }
 
@@ -24,7 +27,7 @@ public class FormValues implements Parcelable {
         firstName = in.readString();
         sex = in.readString();
         phone = in.readString();
-        hobby = in.createStringArray();
+        hobby = in.createStringArrayList();
         work = in.readString();
     }
 
@@ -34,7 +37,7 @@ public class FormValues implements Parcelable {
         dest.writeString(firstName);
         dest.writeString(sex);
         dest.writeString(phone);
-        dest.writeStringArray(hobby);
+        dest.writeStringList(hobby);
         dest.writeString(work);
     }
 
@@ -87,11 +90,11 @@ public class FormValues implements Parcelable {
         this.phone = phone;
     }
 
-    public String[] getHobby() {
+    public List<String> getHobby() {
         return hobby;
     }
 
-    public void setHobby(String[] hobby) {
+    public void setHobby(List<String> hobby) {
         this.hobby = hobby;
     }
 

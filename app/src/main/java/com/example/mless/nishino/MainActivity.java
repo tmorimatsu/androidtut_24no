@@ -15,12 +15,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] mHobby = new String[]{};
+    private ArrayList<String> mHobby = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, HobbySelectionActivity.class);
+                intent.putStringArrayListExtra("hobby", mHobby);
                 startActivityForResult(intent, 0);
             }
         });
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         final String surName = ((TextView)findViewById(R.id.surname_input)).getText().toString();
         final String firstName = ((TextView)findViewById(R.id.firstname_input)).getText().toString();
         final String phone = ((TextView)findViewById(R.id.phone_input)).getText().toString();
-        final String[] hobby = mHobby;
+        final List<String> hobby = mHobby;
         final String work = ((Spinner)findViewById(R.id.work_spinner)).getSelectedItem().toString();
 
         FormValues formValues = new FormValues();
@@ -150,21 +153,21 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == 0){
-            mHobby = data.getStringArrayExtra("hobby");
+            mHobby = data.getStringArrayListExtra("hobby");
             setHobbyView(mHobby);
         }
     }
 
 
-    private void setHobbyView(String[] hobby){
+    private void setHobbyView(List<String> hobby){
         TextView hobbyText = findViewById(R.id.hobby_view);
         StringBuilder tmp = new StringBuilder();
         tmp.append("");
         // アプリ起動時はlength==0のオブジェクトを渡す
-        if(hobby.length != 0){
-            for(int i = 0; i < hobby.length; i++){
-                tmp.append(hobby[i]);
-                if(i !=  hobby.length-1){
+        if(hobby.size() != 0){
+            for(int i = 0; i < hobby.size(); i++){
+                tmp.append(hobby.get(i));
+                if(i !=  hobby.size()-1){
                     tmp.append("、");
                 }
             }

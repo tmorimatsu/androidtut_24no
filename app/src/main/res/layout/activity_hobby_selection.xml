@@ -12,13 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#00aaff"
-        app:titleTextColor="#ffffff"
-        app:title="趣味"/>
+        app:title="趣味"
+        app:titleTextColor="#ffffff" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello nishino"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/select_hobby_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/config_button"
