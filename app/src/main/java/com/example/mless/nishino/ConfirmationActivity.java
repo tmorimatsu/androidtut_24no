@@ -38,6 +38,6 @@ public class ConfirmationActivity extends AppCompatActivity {
         sex.setText("性別:　　　　" + formValues.getSex());
         phone.setText("電話番号:　　　　" + formValues.getPhone());
         hobby.setText("趣味:　　　　" + hobby_sb);
-        work.setText("職業:　　　　" + formValues.getSurName());
+        work.setText("職業:　　　　" + formValues.getWork());
     }
 }
